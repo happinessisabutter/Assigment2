@@ -85,13 +85,13 @@ namespace WinFormsApp1.Migrations
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "MovieId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Showings_Rooms_RoomId",
                         column: x => x.RoomId,
                         principalTable: "Rooms",
                         principalColumn: "RoomId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,7 +103,8 @@ namespace WinFormsApp1.Migrations
                     SeatId = table.Column<int>(type: "int", nullable: false),
                     ShowingId = table.Column<int>(type: "int", nullable: false),
                     PurchaseTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsUsed = table.Column<bool>(type: "bit", nullable: false)
+                    IsUsed = table.Column<bool>(type: "bit", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -113,7 +114,7 @@ namespace WinFormsApp1.Migrations
                         column: x => x.SeatId,
                         principalTable: "Seats",
                         principalColumn: "SeatId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Tickets_Showings_ShowingId",
                         column: x => x.ShowingId,

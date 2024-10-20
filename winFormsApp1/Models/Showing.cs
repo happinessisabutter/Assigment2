@@ -22,5 +22,7 @@ namespace WinFormsApp1.Models
         public Room Room { get; set; } = null!;
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+
+        public ICollection<Ticket> Tickets { get; set; } = [];
     }
 }

@@ -18,5 +18,7 @@ namespace WinFormsApp1.Models
         public DateTime? ReleaseDate { get; set; }
         public string? Description { get; set; }
         public string? ImageUrl { get; set; }
+
+        public ICollection<Showing> Showings { get; set; } = [];
     }
 }

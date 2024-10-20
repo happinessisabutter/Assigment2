@@ -21,5 +21,8 @@ namespace WinFormsApp1.Models
         public DateTime PurchaseTime { get; set; }
 
         public bool IsUsed { get; set; }
+
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Price { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace WinFormsApp1.Models
         public int Capacity { get; set; }
 
         public ICollection<Seat> Seats { get; set; } = [];
+        public ICollection<Showing> Showings { get; set; } = [];
         
     }
 }

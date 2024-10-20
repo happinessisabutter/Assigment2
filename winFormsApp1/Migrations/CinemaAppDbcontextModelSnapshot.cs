@@ -142,6 +142,9 @@ namespace WinFormsApp1.Migrations
                     b.Property<bool>("IsUsed")
                         .HasColumnType("bit");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18, 2)");
+
                     b.Property<DateTime>("PurchaseTime")
                         .HasColumnType("datetime2");
 
@@ -174,15 +177,15 @@ namespace WinFormsApp1.Migrations
             modelBuilder.Entity("WinFormsApp1.Models.Showing", b =>
                 {
                     b.HasOne("WinFormsApp1.Models.Movie", "Movie")
-                        .WithMany()
+                        .WithMany("Showings")
                         .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WinFormsApp1.Models.Room", "Room")
-                        .WithMany()
+                        .WithMany("Showings")
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Movie");
@@ -193,13 +196,13 @@ namespace WinFormsApp1.Migrations
             modelBuilder.Entity("WinFormsApp1.Models.Ticket", b =>
                 {
                     b.HasOne("WinFormsApp1.Models.Seat", "Seat")
-                        .WithMany()
+                        .WithMany("Tickets")
                         .HasForeignKey("SeatId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("WinFormsApp1.Models.Showing", "Showing")
-                        .WithMany()
+                        .WithMany("Tickets")
                         .HasForeignKey("ShowingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -209,9 +212,26 @@ namespace WinFormsApp1.Migrations
                     b.Navigation("Showing");
                 });
 
+            modelBuilder.Entity("WinFormsApp1.Models.Movie", b =>
+                {
+                    b.Navigation("Showings");
+                });
+
             modelBuilder.Entity("WinFormsApp1.Models.Room", b =>
                 {
                     b.Navigation("Seats");
+
+                    b.Navigation("Showings");
+                });
+
+            modelBuilder.Entity("WinFormsApp1.Models.Seat", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("WinFormsApp1.Models.Showing", b =>
+                {
+                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }
