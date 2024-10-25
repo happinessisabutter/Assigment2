@@ -22,6 +22,40 @@ namespace WinFormsApp1.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("GenreMovie", b =>
+                {
+                    b.Property<int>("GenresGenreId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MoviesMovieId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GenresGenreId", "MoviesMovieId");
+
+                    b.HasIndex("MoviesMovieId");
+
+                    b.ToTable("MovieGenres", (string)null);
+                });
+
+            modelBuilder.Entity("WinFormsApp1.Models.Genre", b =>
+                {
+                    b.Property<int>("GenreId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("Relational:JsonPropertyName", "id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "name");
+
+                    b.HasKey("GenreId");
+
+                    b.ToTable("Genres");
+                });
+
             modelBuilder.Entity("WinFormsApp1.Models.Movie", b =>
                 {
                     b.Property<int>("MovieId")
@@ -30,26 +64,35 @@ namespace WinFormsApp1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("BackdropPath")
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "backdrop_path");
 
-                    b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("OriginalLanguage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "original_language");
 
-                    b.Property<string>("Genre")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("OriginalTitle")
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "original_title");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Overview")
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "overview");
 
-                    b.Property<string>("Language")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("PosterPath")
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "poster_path");
 
                     b.Property<DateTime?>("ReleaseDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasAnnotation("Relational:JsonPropertyName", "release_date");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "title");
 
                     b.HasKey("MovieId");
 
@@ -65,6 +108,12 @@ namespace WinFormsApp1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomId"));
 
                     b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaximunCol")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaximunRow")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -139,11 +188,8 @@ namespace WinFormsApp1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketId"));
 
-                    b.Property<bool>("IsUsed")
-                        .HasColumnType("bit");
-
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
+                        .HasColumnType("decimal(5, 2)");
 
                     b.Property<DateTime>("PurchaseTime")
                         .HasColumnType("datetime2");
@@ -161,6 +207,21 @@ namespace WinFormsApp1.Migrations
                     b.HasIndex("ShowingId");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("GenreMovie", b =>
+                {
+                    b.HasOne("WinFormsApp1.Models.Genre", null)
+                        .WithMany()
+                        .HasForeignKey("GenresGenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WinFormsApp1.Models.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesMovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WinFormsApp1.Models.Seat", b =>

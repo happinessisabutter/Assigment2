@@ -3,7 +3,6 @@ D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\bin\Debug\net8.0-windows\Win
 D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.runtimeconfig.json
 D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.dll
 D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.pdb
-D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Forms.Login.resources
 D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.GenerateResource.cache
 D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
 D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
@@ -129,3 +128,7 @@ D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\bin\Debug\net8.0-windows\run
 D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.AssemblyReference.cache
 D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\obj\Debug\net8.0-windows\WinForms.E4050A35.Up2Date
 D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.sourcelink.json
+D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\bin\Debug\net8.0-windows\log4net.dll
+D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\bin\Debug\net8.0-windows\log4Net.config
+D:\Gitprogram\C_sharp\CinemaManagement\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Forms.SeatSelection.resources

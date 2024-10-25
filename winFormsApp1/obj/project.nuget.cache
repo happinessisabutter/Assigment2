@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "wAr8HXav/f/t0nKuVnz7CwNjswpfhF4FVBj6GG2wWAyMt0d59EJfgGQx/+xtVnDsUxRV8g+4rwO4Qs31CB7pUA==",
+  "dgSpecHash": "xsKU1UzgG1fvf0ynmht0MIgkZa5moxK0SV3vRRxy655m/OyDpSHUsPRy2AikUM9ydfOSwDyZJwT7nr0/B4vk/g==",
   "success": true,
   "projectFilePath": "D:\\Gitprogram\\C_sharp\\CinemaManagement\\WinFormsApp1\\WinFormsApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\chen yanqiong\\.nuget\\packages\\log4net\\3.0.2\\log4net.3.0.2.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\microsoft.codeanalysis.common\\4.5.0\\microsoft.codeanalysis.common.4.5.0.nupkg.sha512",
@@ -48,6 +49,7 @@
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\microsoft.web.webview2\\1.0.864.35\\microsoft.web.webview2.1.0.864.35.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\chen yanqiong\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\chen yanqiong\\.nuget\\packages\\system.composition\\6.0.0\\system.composition.6.0.0.nupkg.sha512",

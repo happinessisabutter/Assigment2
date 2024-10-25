@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WinFormsApp1.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace WinFormsApp1.Data
 {
@@ -15,10 +17,12 @@ namespace WinFormsApp1.Data
         public DbSet<Seat> Seats { get; set; } = null!;
         public DbSet<Showing> Showings { get; set; } = null!;
         public DbSet<Ticket> Tickets { get; set; } = null!;
+        public DbSet<Genre> Genres { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLlocalDB;Database=CinemaAppDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server = tcp:utsassignment.database.windows.net, 1433; Initial Catalog = CinemaDb; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30; Authentication = \"Active Directory Default\";");
+            optionsBuilder.LogTo(Console.WriteLine);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -58,6 +62,11 @@ namespace WinFormsApp1.Data
                         .HasForeignKey(t => t.SeatId)
                         .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Movie>()
+                        .HasMany(m => m.Genres)
+                        .WithMany(g => g.Movies)
+                        .UsingEntity(j => j.ToTable("MovieGenres"));
+            
 
         }
     }

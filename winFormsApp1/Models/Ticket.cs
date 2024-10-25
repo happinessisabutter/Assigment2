@@ -20,9 +20,7 @@ namespace WinFormsApp1.Models
         public Showing Showing { get; set; } = null!;
         public DateTime PurchaseTime { get; set; }
 
-        public bool IsUsed { get; set; }
-
-        [Column(TypeName = "decimal(18, 2)")]
+        [Column(TypeName = "decimal(5, 2)")]
         public decimal Price { get; set; }
     }
 }

@@ -22,14 +22,13 @@ namespace WinFormsApp1.Service
        
         private readonly MovieRepository _movieRepository;
         private readonly GenreRepository _genreRepository;
-        private CinemaAppDbcontext _context;
         private static readonly ILog log = LogManager.GetLogger(typeof(MovieServices));
         
        public MovieServices(MovieRepository movieRepository, GenreRepository genreRepository, CinemaAppDbcontext context)
         {
             _movieRepository = movieRepository;
             _genreRepository = genreRepository;
-            _context = context;
+            
         }
 
         public async Task ImportDataAsync()
