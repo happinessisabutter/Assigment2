@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using MovieBooking;
+using WinFormsApp1.Models;
 
-public class TicketQueryForm : Form
+/*public class TicketQueryForm : Form
 {
     public TicketQueryForm()
     {
@@ -83,3 +83,4 @@ public class TicketQueryForm : Form
         this.Controls.Add(cancelButton);
     }
 }
+*/

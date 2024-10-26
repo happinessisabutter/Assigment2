@@ -1,70 +1,119 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
-using MovieBooking;
+using WinFormsApp1.MovieBooking;
+using WinFormsApp1.Models;
+using WinFormsApp1.Service;
+using WinFormsApp1.Repository;
+using WinFormsApp1.Data;
 
 public class TicketInfoForm : Form
 {
-    private Ticket ticket;
+    private List<Ticket> tickets;
+    private List<Movie> movies = new List<Movie>();
+    private List<Showing> showing = new List<Showing>();
 
-    public TicketInfoForm(Ticket ticket)
+    private readonly TicketService ticketService = new TicketService(new TicketRepository(new CinemaAppDbcontext()));
+    private readonly ShowingRepository showingRepository = new ShowingRepository(new CinemaAppDbcontext());
+
+    public TicketInfoForm(List<Ticket> tickets)
     {
-        this.ticket = ticket;
+        this.tickets = tickets;
 
         // Initialize form properties
         this.Text = "Ticket Information";
-        this.Size = new Size(300, 350);
+        this.AutoScroll = true;
 
-        DisplayTicketInfo();
+        Initialize();
+
     }
 
-    private void DisplayTicketInfo()
+    private void Initialize()
     {
-        int y = 10;
+        int baseX = 10; 
+        int maxY = 10; 
+        int ticketWidth = 300; 
 
-        Label ticketIdLabel = new Label();
-        ticketIdLabel.Text = "Ticket ID: " + ticket.TicketId;
-        ticketIdLabel.Location = new Point(10, y);
-        ticketIdLabel.Size = new Size(260, 30);
-        this.Controls.Add(ticketIdLabel);
-        y += 40;
+        this.ClientSize = new Size(tickets.Count * ticketWidth, 300); //
+        foreach (var ticket in tickets)
+        {
+            movies.Add(ticketService.GetMovieFromTicket(ticket.TicketId));
+            showing.Add(showingRepository.GetById(ticket.ShowingId));
+        }
+        for (int i = 0; i < tickets.Count; i++)
+        {
+            int currentY = DisplayTicketInfo(tickets[i], movies[i], showing[i], baseX);
+            maxY = Math.Max(maxY, currentY); 
+            baseX += ticketWidth; 
+        }
 
-        Label movieLabel = new Label();
-        movieLabel.Text = "Movie: " + ticket.Movie.Title;
-        movieLabel.Location = new Point(10, y);
-        movieLabel.Size = new Size(260, 30);
-        this.Controls.Add(movieLabel);
-        y += 40;
-
-        Label dateLabel = new Label();
-        dateLabel.Text = "Date: " + ticket.Date.ToString("MM/dd/yyyy");
-        dateLabel.Location = new Point(10, y);
-        dateLabel.Size = new Size(260, 30);
-        this.Controls.Add(dateLabel);
-        y += 40;
-
-        Label showtimeLabel = new Label();
-        showtimeLabel.Text = "Showtime: " + ticket.Showtime.ToString("HH:mm");
-        showtimeLabel.Location = new Point(10, y);
-        showtimeLabel.Size = new Size(260, 30);
-        this.Controls.Add(showtimeLabel);
-        y += 40;
-
-        Label seatLabel = new Label();
-        seatLabel.Text = "Seat: " + ticket.Seat;
-        seatLabel.Location = new Point(10, y);
-        seatLabel.Size = new Size(260, 30);
-        this.Controls.Add(seatLabel);
-        y += 40;
-
+        
         Button closeButton = new Button();
         closeButton.Text = "Close";
-        closeButton.Location = new Point(10, y);
+        closeButton.Location = new Point(this.ClientSize.Width / 2 - 130, maxY + 10); // middle of window
         closeButton.Size = new Size(260, 30);
         closeButton.Click += (s, e) =>
         {
             this.Close();
         };
         this.Controls.Add(closeButton);
+
+
     }
+
+
+
+    //ticket have showing and sear, trace movie info from showing
+    private int DisplayTicketInfo(Ticket ticket, Movie movie, Showing showing, int baseX)
+    {
+        int x = baseX; // 使用传入的 baseX 作为 X 坐标的起点
+        int y = 10;
+
+        Label ticketIdLabel = new Label();
+        ticketIdLabel.Text = "Ticket ID: " + ticket.TicketId;
+        ticketIdLabel.Location = new Point(x, y);
+        ticketIdLabel.Size = new Size(260, 30);
+        this.Controls.Add(ticketIdLabel);
+        y += 40;
+
+        Label movieLabel = new Label();
+        movieLabel.Text = "Movie: " + movie.Title;
+        movieLabel.Location = new Point(x, y);
+        movieLabel.Size = new Size(260, 30);
+        this.Controls.Add(movieLabel);
+        y += 40;
+
+        Label dateLabel = new Label();
+        dateLabel.Text = "Date: " + ticket.PurchaseTime.ToString("MM/dd/yyyy");
+        dateLabel.Location = new Point(x, y);
+        dateLabel.Size = new Size(260, 30);
+        this.Controls.Add(dateLabel);
+        y += 40;
+
+        Label showtimeLabel = new Label();
+        showtimeLabel.Text = "Showtime: " + showing.StartTime.ToString("HH:mm");
+        showtimeLabel.Location = new Point(x, y);
+        showtimeLabel.Size = new Size(260, 30);
+        this.Controls.Add(showtimeLabel);
+        y += 40;
+        ///GetRoomHere need maxrow and maxcolumn
+        Seat seat = ticketService.GetSeatFromTicket(ticket.SeatId);
+       
+        Label seatLabel = new Label();
+        seatLabel.Text = $"Seat: {(char)('A' + seat.Row - 1)}{seat.Column}";
+        seatLabel.Location = new Point(x, y);
+        seatLabel.Size = new Size(260, 30);
+        this.Controls.Add(seatLabel);
+        y += 40;
+
+        Label priceLabel = new Label(); // 正确创建价格标签
+        priceLabel.Text = "Price: " + ticket.Price.ToString("C");
+        priceLabel.Location = new Point(x, y);
+        priceLabel.Size = new Size(260, 30);
+        this.Controls.Add(priceLabel);
+        y += 40;
+
+        return y; // 返回 y 坐标的最终值
+    }
+
 }

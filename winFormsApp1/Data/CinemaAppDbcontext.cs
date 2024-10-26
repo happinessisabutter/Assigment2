@@ -58,7 +58,7 @@ namespace WinFormsApp1.Data
             //can not delete a seat if it has tickets
             modelBuilder.Entity<Ticket>()
                         .HasOne(t => t.Seat)
-                        .WithMany(s => s.Tickets)
+                        .WithMany(s => s.Ticket)
                         .HasForeignKey(t => t.SeatId)
                         .OnDelete(DeleteBehavior.Restrict);
 

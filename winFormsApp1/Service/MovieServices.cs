@@ -24,11 +24,26 @@ namespace WinFormsApp1.Service
         private readonly GenreRepository _genreRepository;
         private static readonly ILog log = LogManager.GetLogger(typeof(MovieServices));
         
-       public MovieServices(MovieRepository movieRepository, GenreRepository genreRepository, CinemaAppDbcontext context)
+       public MovieServices(MovieRepository movieRepository, GenreRepository genreRepository)
         {
             _movieRepository = movieRepository;
             _genreRepository = genreRepository;
-            
+        }
+
+        public async Task<Movie> CreateMovieAsync(string title, string originalTitle, string originalLanguage, DateTime releaseDate, string overview, string posterPath, string backdropPath)
+        {
+            Movie movie = new Movie
+            {
+                Title = title,
+                OriginalTitle = originalTitle,
+                OriginalLanguage = originalLanguage,
+                ReleaseDate = releaseDate,
+                Overview = overview,
+                PosterPath = posterPath,
+                BackdropPath = backdropPath
+            };
+            await _movieRepository.AddAsync(movie);
+            return movie;
         }
 
         public async Task ImportDataAsync()

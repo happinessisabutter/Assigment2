@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using System.Drawing;
-using MovieBooking;
+using WinFormsApp1.Models;
 
+/*namespace WinFormsApp1.MovieBooking
+{ 
 public class MainForm : Form
 {
     private const string API_KEY = "ecfcd92abcf0735492247a8eae3c742a"; 
@@ -117,3 +119,4 @@ public class MainForm : Form
         myTicketButton.BringToFront();
     }
 }
+}*/

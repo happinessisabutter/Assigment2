@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp1.Forms
+﻿namespace WinFormsApp1.MovieBooking
 {
     partial class SeatSelection
     {

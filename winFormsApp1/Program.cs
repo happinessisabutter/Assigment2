@@ -5,6 +5,7 @@ using WinFormsApp1.Service;
 using WinFormsApp1.Repository;
 using WinFormsApp1.Data;
 using WinFormsApp1.Models;
+using WinFormsApp1.MovieBooking;
 
 namespace WinFormsApp1
 {
@@ -27,13 +28,13 @@ namespace WinFormsApp1
             var logRepo = LogManager.GetRepository(Assembly.GetEntryAssembly());
             XmlConfigurator.Configure(logRepo, new FileInfo("log4Net.config"));
             //var genreService = new GenreService(new GenreRepository(new CinemaAppDbcontext()));
-            var movieService = new MovieServices(new MovieRepository(new CinemaAppDbcontext()), new GenreRepository(new CinemaAppDbcontext()), new CinemaAppDbcontext());
+            //var movieService = new MovieServices(new MovieRepository(new CinemaAppDbcontext()), new GenreRepository(new CinemaAppDbcontext()), new CinemaAppDbcontext());
             //genreService.ImportDataAsync().Wait();
            
-            movieService.ImportDataAsync().Wait();
-
+            //movieService.ImportDataAsync().Wait();
             
-            Application.Run(new Forms.SeatSelection());
+            
+            Application.Run(new SeatSelection());
         }
 
         static void SeatInitialize()
@@ -41,16 +42,6 @@ namespace WinFormsApp1
 
         }
 
-        static void RoomInitialize()
-        {
-            // Create rooms
-            var rooms = new List<Room>
-                        {
-                            new Room { Name = "Room 1", Capacity = 50 },
-                            new Room { Name = "Room 2", Capacity = 75 },
-                            new Room { Name = "Room 3", Capacity = 100 }
-                        };
-
-        }
+        
     }
 }

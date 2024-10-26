@@ -18,7 +18,7 @@ namespace WinFormsApp1.Models
         public int Row { get; set; }
         public int Column { get; set; }
         public bool IsAvailable { get; set; }
-        
-        public ICollection<Ticket> Tickets { get; set; } = [];
+
+        public ICollection<Ticket> Ticket { get; set; } = [];
     }
 }
